@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Roboto', sans-serif;  
+    background-color: #f3f4f6;
+}
+
+
+section.hero-frase {
+    height: 400px;
+    background-image: url('/images/frase2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 10% 40%;
+    position: relative;
+}
