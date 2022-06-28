@@ -1,7 +1,31 @@
 import Link from "next/link"
+import { useEffect, useState } from "react"
+import { api } from "../services"
 
+
+type Pet = {
+  id: number,
+  name: string,
+  cover: string,
+  description: string,
+}
 
 function Home() {
+
+  const [pets, setPets] = useState<Pet[]>()
+
+  useEffect(() => {
+
+    api.get("/pets").then((response) => {
+
+      setPets(response.data.pets)
+
+    }).catch((error) => {
+
+    })
+
+  }, [])
+
   return (
     <>
       {/* HERO */}
@@ -22,70 +46,20 @@ function Home() {
           <p className="text-gray-600 text-xl ">Confira todos os nossos amiguinhos para adoção</p>
         </div>
         <div className="grid grid-cols-4 gap-5">
-          <div className="shadow">
-            <img src="/images/dog1.jpg" className="rounded-tl rounded-tr" alt="" />
-            <div className="flex flex-col p-3 w-full">
-              <p className="text-[#613387] text-2xl font-bold py-5">Cater sampaio</p>
-              <p className="text-gray-500 text-lg mb-5">Cachorro muito dócil, carinhoso e cheio de amor pra dar</p>
-              <Link href="/"><a className="text-white text-lg bg-[#613387] h-10 rounded-lg flex justify-center items-center">Quero adotar</a></Link>
+
+          {pets?.map(pet => (
+
+            <div key={pet.id} className="shadow">
+              <img src={`${process.env.NEXT_PUBLIC_API_URL}/pet-image-web/${pet.cover}`}  className="rounded-tl rounded-tr h-[200px] w-full" alt="" />
+              <div className="flex flex-col p-3 w-full">
+                <p className="text-[#613387] text-2xl font-bold py-5">{pet.name}</p>
+                <p className="text-gray-500 text-lg mb-5">{`${pet.description.substring(0, 50)}...`}</p>
+                <Link href="/"><a className="text-white text-lg bg-[#613387] h-10 rounded-lg flex justify-center items-center">Quero adotar</a></Link>
+              </div>
             </div>
-          </div>
-          <div className="shadow">
-            <img src="/images/dog1.jpg" className="rounded-tl rounded-tr" alt="" />
-            <div className="flex flex-col p-3 w-full">
-              <p className="text-[#613387] text-2xl font-bold py-5">Cater sampaio</p>
-              <p className="text-gray-500 text-lg mb-5">Cachorro muito dócil, carinhoso e cheio de amor pra dar</p>
-              <Link href="/"><a className="text-white text-lg bg-[#613387] h-10 rounded-lg flex justify-center items-center">Quero adotar</a></Link>
-            </div>
-          </div>
-          <div className="shadow">
-            <img src="/images/dog1.jpg" className="rounded-tl rounded-tr" alt="" />
-            <div className="flex flex-col p-3 w-full">
-              <p className="text-[#613387] text-2xl font-bold py-5">Cater sampaio</p>
-              <p className="text-gray-500 text-lg mb-5">Cachorro muito dócil, carinhoso e cheio de amor pra dar</p>
-              <Link href="/"><a className="text-white text-lg bg-[#613387] h-10 rounded-lg flex justify-center items-center">Quero adotar</a></Link>
-            </div>
-          </div>
-          <div className="shadow">
-            <img src="/images/dog1.jpg" className="rounded-tl rounded-tr" alt="" />
-            <div className="flex flex-col p-3 w-full">
-              <p className="text-[#613387] text-2xl font-bold py-5">Cater sampaio</p>
-              <p className="text-gray-500 text-lg mb-5">Cachorro muito dócil, carinhoso e cheio de amor pra dar</p>
-              <Link href="/"><a className="text-white text-lg bg-[#613387] h-10 rounded-lg flex justify-center items-center">Quero adotar</a></Link>
-            </div>
-          </div>
-          <div className="shadow">
-            <img src="/images/dog1.jpg" className="rounded-tl rounded-tr" alt="" />
-            <div className="flex flex-col p-3 w-full">
-              <p className="text-[#613387] text-2xl font-bold py-5">Cater sampaio</p>
-              <p className="text-gray-500 text-lg mb-5">Cachorro muito dócil, carinhoso e cheio de amor pra dar</p>
-              <Link href="/"><a className="text-white text-lg bg-[#613387] h-10 rounded-lg flex justify-center items-center">Quero adotar</a></Link>
-            </div>
-          </div>
-          <div className="shadow">
-            <img src="/images/dog1.jpg" className="rounded-tl rounded-tr" alt="" />
-            <div className="flex flex-col p-3 w-full">
-              <p className="text-[#613387] text-2xl font-bold py-5">Cater sampaio</p>
-              <p className="text-gray-500 text-lg mb-5">Cachorro muito dócil, carinhoso e cheio de amor pra dar</p>
-              <Link href="/"><a className="text-white text-lg bg-[#613387] h-10 rounded-lg flex justify-center items-center">Quero adotar</a></Link>
-            </div>
-          </div>
-          <div className="shadow">
-            <img src="/images/dog1.jpg" className="rounded-tl rounded-tr" alt="" />
-            <div className="flex flex-col p-3 w-full">
-              <p className="text-[#613387] text-2xl font-bold py-5">Cater sampaio</p>
-              <p className="text-gray-500 text-lg mb-5">Cachorro muito dócil, carinhoso e cheio de amor pra dar</p>
-              <Link href="/"><a className="text-white text-lg bg-[#613387] h-10 rounded-lg flex justify-center items-center">Quero adotar</a></Link>
-            </div>
-          </div>
-          <div className="shadow">
-            <img src="/images/dog1.jpg" className="rounded-tl rounded-tr" alt="" />
-            <div className="flex flex-col p-3 w-full">
-              <p className="text-[#613387] text-2xl font-bold py-5">Cater sampaio</p>
-              <p className="text-gray-500 text-lg mb-5">Cachorro muito dócil, carinhoso e cheio de amor pra dar</p>
-              <Link href="/"><a className="text-white text-lg bg-[#613387] h-10 rounded-lg flex justify-center items-center">Quero adotar</a></Link>
-            </div>
-          </div>
+
+          ))}
+
         </div>
       </section>
 
@@ -95,34 +69,19 @@ function Home() {
           <h2 className="text-[#613387] text-5xl font-bold drop-shadow-md">Todas as raças</h2>
           <p className="text-gray-600 mt-5 text-xl">Escolha a que mais te agrada e adote um amiguinho</p>
         </div>
-        <div className="relative w-full">
-          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><span>Raça 01</span></div>
-          <img src="/images/dog1.jpg" className="rounded-lg" alt="" />
+        <div className="relative w-full h-[250px]">
+          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><Link href="/category/pastor"><a>Cachorro</a></Link></div>
+          <img src="/images/viralata.jpg" className="rounded-lg h-[250px] w-full" alt="" />
         </div>
 
-        <div className="relative w-full">
-          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><span>Raça 01</span></div>
-          <img src="/images/dog1.jpg" className="rounded-lg" alt="" />
+        <div className="relative w-full h-[250px]">
+          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><Link href="/category/viralata"><a>Gato</a></Link></div>
+          <img src="/images/gato.jpg" className="rounded-lg h-[250px] w-full" alt="" />
         </div>
 
-        <div className="relative w-full">
-          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><span>Raça 01</span></div>
-          <img src="/images/dog1.jpg" className="rounded-lg" alt="" />
-        </div>
-
-        <div className="relative w-full">
-          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><span>Raça 01</span></div>
-          <img src="/images/dog1.jpg" className="rounded-lg" alt="" />
-        </div>
-
-        <div className="relative w-full">
-          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><span>Raça 01</span></div>
-          <img src="/images/dog1.jpg" className="rounded-lg" alt="" />
-        </div>
-
-        <div className="relative w-full">
-          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><span>Raça 01</span></div>
-          <img src="/images/dog1.jpg" className="rounded-lg" alt="" />
+        <div className="relative w-full h-[250px]">
+          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><Link href="/category/pibull"><a>Cachorro e gato</a></Link></div>
+          <img src="/images/caoegato.jpg" className="rounded-lg h-[250px] w-full" alt="" />
         </div>
 
       </section>
@@ -179,7 +138,7 @@ function Home() {
         </div>
       </section>
 
-    
+
     </>
   )
 }
