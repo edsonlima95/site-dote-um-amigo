@@ -1,38 +1,32 @@
+import { GetServerSideProps } from "next"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import Card from "../components/Card"
 import { api } from "../services"
 
 
 type Pet = {
   id: number,
   name: string,
+  slug: string,
   cover: string,
   description: string,
 }
 
-function Home() {
+type PetProps = {
+  pets: Pet[]
+}
 
-  const [pets, setPets] = useState<Pet[]>()
+function Home({ pets }: PetProps) {
 
-  useEffect(() => {
-
-    api.get("/pets").then((response) => {
-
-      setPets(response.data.pets)
-
-    }).catch((error) => {
-
-    })
-
-  }, [])
 
   return (
     <>
       {/* HERO */}
       <div className="grid grid-cols-2 min-h-[500px]">
-        <div className="flex flex-col p-10 justify-center items-center">
+        <div className="flex flex-col p-10 justify-center">
           <h1 className="text-6xl text-[#613387] font-semibold drop-shadow-md">Adotar um amiguinho nunca foi tão fácil</h1>
-          <p className="text-gray-500 text-xl mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit obcaecati repudiandae atque voluptatum ut accusantium magnam.</p>
+          <p className="text-gray-500 text-xl mt-4">Adotando um amiguinho você contribui para um mundo melhor.</p>
         </div>
         <div className="flex items-end">
           <img src="/images/dog.png" alt="" />
@@ -49,14 +43,12 @@ function Home() {
 
           {pets?.map(pet => (
 
-            <div key={pet.id} className="shadow">
-              <img src={`${process.env.NEXT_PUBLIC_API_URL}/pet-image-web/${pet.cover}`}  className="rounded-tl rounded-tr h-[200px] w-full" alt="" />
-              <div className="flex flex-col p-3 w-full">
-                <p className="text-[#613387] text-2xl font-bold py-5">{pet.name}</p>
-                <p className="text-gray-500 text-lg mb-5">{`${pet.description.substring(0, 50)}...`}</p>
-                <Link href="/"><a className="text-white text-lg bg-[#613387] h-10 rounded-lg flex justify-center items-center">Quero adotar</a></Link>
-              </div>
-            </div>
+            <Card keyId={pet.id}
+              name={pet.name}
+              description={pet.description}
+              cover={pet.cover}
+              slug={pet.slug}
+            />
 
           ))}
 
@@ -70,17 +62,17 @@ function Home() {
           <p className="text-gray-600 mt-5 text-xl">Escolha a que mais te agrada e adote um amiguinho</p>
         </div>
         <div className="relative w-full h-[250px]">
-          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><Link href="/category/pastor"><a>Cachorro</a></Link></div>
+          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><Link href="/category/cachorro"><a>Doguinhos</a></Link></div>
           <img src="/images/viralata.jpg" className="rounded-lg h-[250px] w-full" alt="" />
         </div>
 
         <div className="relative w-full h-[250px]">
-          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><Link href="/category/viralata"><a>Gato</a></Link></div>
+          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><Link href="/category/gato"><a>Gatinhos</a></Link></div>
           <img src="/images/gato.jpg" className="rounded-lg h-[250px] w-full" alt="" />
         </div>
 
         <div className="relative w-full h-[250px]">
-          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><Link href="/category/pibull"><a>Cachorro e gato</a></Link></div>
+          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><Link href="/category/outros"><a>Cãozinhos e gatinhos</a></Link></div>
           <img src="/images/caoegato.jpg" className="rounded-lg h-[250px] w-full" alt="" />
         </div>
 
@@ -99,7 +91,6 @@ function Home() {
             <li><p className="text-gray-500 text-xl mb-3">Alerta de perigos</p></li>
             <li><p className="text-gray-500 text-xl mb-3">Diminue o estresse</p></li>
           </ul>
-          <Link href="/"><a className="text-white text-lg bg-[#613387] py-5 px-16 rounded-lg">Quero adotar</a></Link>
         </div>
       </section>
 
@@ -141,6 +132,27 @@ function Home() {
 
     </>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+
+  try {
+
+    const response = await api.get(`/pets`)
+
+    return {
+      props: {
+        pets: response.data.pets
+      }
+    }
+
+  } catch (error) {
+
+  }
+
+  return {
+    props: {}, // will be passed to the page component as props
+  }
 }
 
 export default Home
