@@ -6,7 +6,7 @@ function Footer() {
   return (
     <>
       <footer className="bg-[#613387] py-10">
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4">
           <div className="p-5 text-center">
             <h3 className="text-white block mb-5 text-xl uppercase">Sobre nós</h3>
             <p className="text-gray-300">Nosso site foi feito no intuito de ajudar, a diminuir o numero de bixinhos abandonados pelas ruas a encontrar um novo lar, para que possa ser cuidado e ter uma vida felix.</p>
