@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import Card from "../components/Card"
+import Petcare from "../components/Care"
 import { api } from "../services"
 
 
@@ -26,7 +27,7 @@ function Home({ pets }: PetProps) {
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
         <div className="flex flex-col p-10 justify-center text-center lg:text-left">
           <h1 className="text-5xl lg:text-6xl text-[#613387] font-semibold drop-shadow-md">Adotar um amiguinho nunca foi tão fácil</h1>
-          <p className="text-gray-500 text-2xl lg:text-xl mt-4">Adotando um amiguinho você contribui para um mundo melhor <br/>e ainda ajuda a tirar todos os bixinhos que precisam de um novo lar. </p>
+          <p className="text-gray-500 text-2xl lg:text-xl mt-4">Adotando um amiguinho você contribui para um mundo melhor <br />e ainda ajuda a tirar todos os bixinhos que precisam de um novo lar. </p>
         </div>
         <div className="flex items-end">
           <img src="/images/dog.png" alt="" className="-ml-9 lg:ml-0" />
@@ -39,17 +40,16 @@ function Home({ pets }: PetProps) {
           <h2 className="text-[#613387] font-bold text-center text-4xl lg:text-5xl mb-4 drop-shadow-md">Todos os dias novos <br /> bixinhos vem chegando</h2>
           <p className="text-gray-600 text-2xl lg:text-xl text-center lg:text-left">Confira todos os nossos amiguinhos para adoção</p>
         </div>
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
 
           {pets?.map(pet => (
-
-            <Card keyId={pet.id}
+            <Card
+              key={pet.id}
               name={pet.name}
               description={pet.description}
               cover={pet.cover}
               slug={pet.slug}
             />
-
           ))}
 
         </div>
@@ -101,33 +101,7 @@ function Home({ pets }: PetProps) {
         </div>
       </section>
 
-      {/* DICAS */}
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-3 p-5 lg:p-10">
-        <div className="col-span-1 lg:col-span-3 text-center my-16">
-          <p className="text-[#613387] drop-shadow-md font-bold text-4xl lg:text-5xl">3 dicas de como cuidar <br /> melhor do seu pet</p>
-        </div>
-        <div className="flex justify-center items-center shadow rounded">
-          <img src="/images/caminhada.svg" alt="" className="w-[200px] h-[200px]" />
-          <div className="p-5">
-            <h2 className="text-[#613387] font-bold text-xl mb-5">Caminhada</h2>
-            <p className="text-gray-500">Leve sempre seu animalzinho para passaear.</p>
-          </div>
-        </div>
-        <div className="flex justify-center items-center shadow rounded">
-          <img src="/images/vacina.svg" alt="" className="w-[200px] h-[200px]" />
-          <div className="p-5">
-            <h2 className="text-[#613387] font-bold text-xl mb-5">Vacina</h2>
-            <p className="text-gray-500">Leve sempre seu animalzinho para passaear.</p>
-          </div>
-        </div>
-        <div className="flex justify-center items-center shadow rounded">
-          <img src="/images/cuidado.svg" alt="" className="w-[200px] h-[200px]" />
-          <div className="p-5">
-            <h2 className="text-[#613387] font-bold text-xl mb-5">Alementação</h2>
-            <p className="text-gray-500">Leve sempre seu animalzinho para passaear.</p>
-          </div>
-        </div>
-      </section>
+      <Petcare />
 
     </>
   )

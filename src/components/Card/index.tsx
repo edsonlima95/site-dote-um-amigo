@@ -1,7 +1,6 @@
 import Link from "next/link"
 
 type CardProps = {
-    keyId: number | string,
     name: string,
     slug: string,
     cover: string,
@@ -11,7 +10,7 @@ type CardProps = {
 function Card(props: CardProps) {
 
     return (
-        <div key={props.keyId} className="shadow">
+        <div className="shadow">
             <img src={`${process.env.NEXT_PUBLIC_API_URL}/pet/image/${props.cover}`} className="rounded-tl rounded-tr h-[200px] w-full" alt="" />
             <div className="flex flex-col p-3 w-full">
                 <p className="text-[#613387] text-2xl font-bold py-5">{props.name}</p>
