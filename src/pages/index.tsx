@@ -72,7 +72,7 @@ function Home({ pets }: PetProps) {
         </div>
 
         <div className="relative w-full h-[250px]">
-          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full"><Link href="/category/outros"><a>Cãozinhos e gatinhos</a></Link></div>
+          <div className="absolute top-0 bottom-0 bg-[#00000085] rounded-lg text-white text-4xl font-bold flex justify-center items-center w-full p-5"><Link href="/category/outros"><a>Cãozinhos e gatinhos</a></Link></div>
           <img src="/images/caoegato.jpg" className="rounded-lg h-[250px] w-full" alt="" />
         </div>
 
@@ -85,7 +85,7 @@ function Home({ pets }: PetProps) {
         </div>
         <div className="p-5 lg:p-16 flex flex-col items-center content-center">
           <ul className="mt-5 mb-8 text-center lg:text-left">
-            <li><p className="text-5xl text-[#613387] font-bold drop-shadow-md">Por que adotar um amiguinho?</p></li>
+            <li><p className="text-5xl text-[#613387] font-bold drop-shadow-md mb-8">Por que adotar um amiguinho?</p></li>
             <li><p className="text-gray-500 text-2xl lg:text-xl mb-3 mt-3">Companheiro de todas as horas</p></li>
             <li><p className="text-gray-500 text-2xl lg:text-xl mb-3">Mais alegria para sua casa</p></li>
             <li><p className="text-gray-500 text-2xl lg:text-xl mb-3">Alerta de perigos</p></li>

@@ -27,8 +27,8 @@ function Animal({ pet }: PetProps) {
     return (
         <>
             <div className="container mx-auto py-16 flex flex-col lg:flex-row gap-6">
-                <div className="lg:w-7/12">
-                    <img src={`${process.env.NEXT_PUBLIC_API_URL}/pet/image/${pet?.cover}`} alt="" className="rounded w-full h-[400px] lg:h-[600px]" />
+                <div className="lg:w-7/12 p-3">
+                    <img src={`${process.env.NEXT_PUBLIC_API_URL}/pet/image/${pet?.cover}`} alt="" className="rounded w-full h-[300px] lg:h-[600px]" />
                 </div>
                 <div className="w-full lg:w-6/12 lg:text-start text-center">
                     <h1 className="text-[#613387] text-5xl font-bold drop-shadow-md">{pet?.name}</h1>
