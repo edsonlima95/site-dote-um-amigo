@@ -6,7 +6,7 @@ function About() {
 
     return (
         <div className="flex justify-center">
-            <div className="bg-white shadow rounded p-10 m-10 w-7/12">
+            <div className="bg-white shadow rounded p-5 lg:p-10 m-10 lg:w-7/12">
                 <h1 className="text-[#613387] text-4xl font-bold drop-shadow-md">Sobre o amigos do bem</h1>
                 <p className="text-gray-500 text-xl my-5">Nosso site foi feito no intuito de ajudar, a diminuir o numero de bixinhos abandonados pelas ruas a encontrar um novo lar, para que possa ser cuidado e ter uma vida felix.</p>
                 <h2 className="text-[#613387] text-4xl font-bold drop-shadow-md">Como adotar</h2>

@@ -17,7 +17,7 @@ function Footer() {
               <li><Link href="/"><a className="text-gray-200 underline">Sobre</a></Link></li>
               <li><Link href="/about"><a className="text-gray-200 underline">Quem somos</a></Link></li>
               <li><Link href="/help"><a className="text-gray-200 underline">Quero ajudar</a></Link></li>
-              <li><Link href="/login"><a className="text-gray-200 underline">Login</a></Link></li>
+              <li><Link href="https://admin.pet.edsonlimaweb.com.br/auth"><a target="_blank" className="text-gray-200 underline">Login</a></Link></li>
             </ul>
           </div>
           <div className="p-5 text-center">
